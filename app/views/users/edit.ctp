@@ -3,14 +3,20 @@
 	<fieldset>
  		<legend><?php __('Edit User'); ?></legend>
 	<?php
+		
+		echo $session->flash('auth');
+	
 		echo $this->Form->input('id');
 		echo $this->Form->input('firstname');
 		echo $this->Form->input('lastname');
 		echo $this->Form->input('address');
 		echo $this->Form->input('city');
 		echo $this->Form->input('state');
-		echo $this->Form->input('email');
+		echo $this->Form->input('username', array('label' => 'E-mail Address'));
 		echo $this->Form->input('password');
+		if ($admin) {
+			echo $this->Form->input('role_id');
+		}
 		echo $this->Form->input('phonenumber');
 		echo $this->Form->input('language_id');
 		echo $this->Form->input('agentcontact');

@@ -5,7 +5,7 @@ class User extends AppModel {
 		'firstname' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Please enter your first name',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -52,19 +52,45 @@ class User extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'email' => array(
+		'username' => array(
 			'email' => array(
 				'rule' => array('email'),
+				'message' => 'you must format your email username@domain.ext',
+				//'allowEmpty' => false,
+				'required' => true,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'5 and 40' => array(
+				'rule' => array('between', 5, 40),
+				'message' => 'The email must be between 5 and 40 characters'
+			),
+			'Must be unique' => array(
+				'rule' => 'isUnique',
+				'message' => 'That email has already been taken'
+			),
+		),
+		'password' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'5 and 30' => array(			
+				'rule' => array('between', 5, 30),
+				'message' => 'The password must be between 5 and 30 characters'
+			),
+			'no match' => array(
+				'rule' => 'matchPasswords',
+				'message' => 'The passwords do not match'
+			),
 		),
-		'password' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
+		'role_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -112,20 +138,27 @@ class User extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'passreset' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+		//'passreset' => array(
+		//	'notempty' => array(
+		//		'rule' => array('notempty'),
+		//		//'message' => 'Your custom message here',
+		//		//'allowEmpty' => false,
+		//		//'required' => false,
+		//		//'last' => false, // Stop validation after this rule
+		//		//'on' => 'create', // Limit validation to 'create' or 'update' operations
+		//	),
+		//),
 	);
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $belongsTo = array(
+		'Role' => array(
+			'className' => 'Role',
+			'foreignKey' => 'role_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 		'Language' => array(
 			'className' => 'Language',
 			'foreignKey' => 'language_id',
@@ -169,6 +202,31 @@ class User extends AppModel {
 			'insertQuery' => ''
 		)
 	);
+	
+	function matchPasswords($data){
+		if($data['password'] == $this->data['User']['password_confirmation']){
+			return TRUE;
+		}
+		$this->invalidate('password_confirmation', 'The passwords do not match');
+		return FALSE;
+	}
+	
+	function hashPasswords($data){
+		
+		if(isset($this->data['User']['password'])){			
+			$this->data['User']['password'] = Security::hash($this->data['User']['password'], NULL, TRUE); //second argument uses SHA1 by default /md5/sha256/ last argument true uses the security.salt in the config
+			return $data;
+		}
+		return $data;
+		
+	}
+	
+	function beforeSave(){
+		
+		$this->hashPasswords(NULL, TRUE);
+		return TRUE;
+		
+	}
 
 }
 ?>

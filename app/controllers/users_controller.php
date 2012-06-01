@@ -2,6 +2,36 @@
 class UsersController extends AppController {
 
 	var $name = 'Users';
+	var $components = array('Session');
+	
+	function beforeFilter(){
+		
+		parent::beforeFilter();
+		$this->Auth->allow('add');
+		
+		if($this->action == 'add' || $this->action == 'edit'){
+			$this->Auth->authenticate = $this->User;
+		}	
+		
+	}
+	
+	
+	
+	function login() {
+		
+		if($this->_loggedIn()){			
+					
+			$this->redirect(array('action' => 'view', $this->Auth->user('id')));
+			
+		}	
+		
+	}
+	
+	function logout() {
+		
+		$this->redirect($this->Auth->logout());
+		
+	}	
 
 	function index() {
 		$this->User->recursive = 0;

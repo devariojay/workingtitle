@@ -8,8 +8,9 @@
 			<th><?php echo $this->Paginator->sort('address');?></th>
 			<th><?php echo $this->Paginator->sort('city');?></th>
 			<th><?php echo $this->Paginator->sort('state');?></th>
-			<th><?php echo $this->Paginator->sort('email');?></th>
+			<th><?php echo $this->Paginator->sort('username');?></th>
 			<th><?php echo $this->Paginator->sort('password');?></th>
+			<th><?php echo $this->Paginator->sort('role_id');?></th>
 			<th><?php echo $this->Paginator->sort('phonenumber');?></th>
 			<th><?php echo $this->Paginator->sort('language_id');?></th>
 			<th><?php echo $this->Paginator->sort('agentcontact');?></th>
@@ -34,8 +35,9 @@
 		<td><?php echo $user['User']['address']; ?>&nbsp;</td>
 		<td><?php echo $user['User']['city']; ?>&nbsp;</td>
 		<td><?php echo $user['User']['state']; ?>&nbsp;</td>
-		<td><?php echo $user['User']['email']; ?>&nbsp;</td>
+		<td><?php echo $user['User']['username']; ?>&nbsp;</td>
 		<td><?php echo $user['User']['password']; ?>&nbsp;</td>
+		<td><?php echo $user['User']['role_id']; ?>&nbsp;</td>
 		<td><?php echo $user['User']['phonenumber']; ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($user['Language']['name'], array('controller' => 'languages', 'action' => 'view', $user['Language']['id'])); ?>
@@ -47,8 +49,10 @@
 		<td><?php echo $user['User']['updated']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $user['User']['id'])); ?>
+			<?php if($admin): ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $user['User']['id'])); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $user['User']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $user['User']['id'])); ?>
+			<?php endif; ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
