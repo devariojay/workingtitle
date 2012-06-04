@@ -13,17 +13,15 @@ class UsersController extends AppController {
 			$this->Auth->authenticate = $this->User;
 		}	
 		
-	}
-	
-	
+	}	
 	
 	function login() {
 		
-		if($this->_loggedIn()){			
+		if($this->_loggedIn()){
 					
 			$this->redirect(array('action' => 'view', $this->Auth->user('id')));
 			
-		}	
+		}
 		
 	}
 	
@@ -31,7 +29,7 @@ class UsersController extends AppController {
 		
 		$this->redirect($this->Auth->logout());
 		
-	}	
+	}
 
 	function index() {
 		$this->User->recursive = 0;
