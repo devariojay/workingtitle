@@ -9,7 +9,7 @@
 		echo $this->Form->input('website');
 		echo $this->Form->input('city');
 		echo $this->Form->input('state');
-		echo $this->Form->input('foundingdate');
+		echo $this->Form->input('foundingdate', array('type' => 'date', 'empty' => false, 'minYear' => '1830', 'maxyear' => date('Y')));
 		echo $this->Form->input('membership');
 		echo $this->Form->input('facebook');
 		echo $this->Form->input('twitter');

@@ -15,6 +15,14 @@ class FooterblocksController extends AppController {
 		}
 		$this->set('footerblock', $this->Footerblock->read(null, $id));
 	}
+	
+	function footergrab($language = null){
+		
+		$this->Footerblock->recursive = 0;
+		$foo = $this->Footerblock->find('all', array('conditions' => array('language_id' => $language), 'fields' => array('Footerblock.titletext', 'Footerblock.descriptiontext', 'Footerblock.linktext', 'Footerblock.link', 'Footerblock.image')));
+		return $foo;
+		
+	}
 
 	function add() {
 		if (!empty($this->data)) {

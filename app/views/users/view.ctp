@@ -36,16 +36,16 @@
 			<?php echo $user['User']['username']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Password'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $user['User']['password']; ?>
+<!--		<dt<?php #if ($i % 2 == 0) echo $class;?>><?php #__('Password'); ?></dt>
+		<dd<?php #if ($i++ % 2 == 0) echo $class;?>>
+			<?php #echo $user['User']['password']; ?>
 			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Role Id'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $user['User']['role_id']; ?>
+		</dd>-->
+<!--		<dt<?php #if ($i % 2 == 0) echo $class;?>><?php #__('Role Id'); ?></dt>
+		<dd<?php #if ($i++ % 2 == 0) echo $class;?>>
+			<?php #echo $user['User']['role_id']; ?>
 			&nbsp;
-		</dd>
+		</dd>-->
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Phonenumber'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $user['User']['phonenumber']; ?>
@@ -83,6 +83,9 @@
 		</dd>
 	</dl>
 </div>
+
+<?php if($admin): ?>
+
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
@@ -192,3 +195,5 @@
 		</ul>
 	</div>
 </div>
+
+<?php endif; ?>

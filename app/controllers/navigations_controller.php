@@ -7,6 +7,12 @@ class NavigationsController extends AppController {
 		$this->Navigation->recursive = 0;
 		$this->set('navigations', $this->paginate());
 	}
+	
+	function menugrab($language = null) {
+		$this->Navigation->recursive = 0;
+		$nav = $this->Navigation->find('all', array('conditions' => array('language_id' => $language), 'fields' => array('Navigation.linkname', 'Navigation.link')));
+		return $nav;		
+	}
 
 	function view($id = null) {
 		if (!$id) {

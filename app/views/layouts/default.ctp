@@ -48,14 +48,24 @@
 			<?php echo $html->link('Login to Vote', array('controller' => 'users', 'action' => 'login')); ?> or
 			<?php echo $html->link('Register', array('controller' => 'users', 'action' => 'add')); ?>
 			<?php endif; ?>
-			
+			<div id="menutop">
+			<?php echo $this->element('navigation', array('language' => '2')); ?> <!--cache this-->
+			</div>
 		</div>
 			<?php echo $this->Session->flash(); ?>
 
 			<?php echo $content_for_layout; ?>
-
+			
+			
+		
 		</div>
-		<div id="footer">
+		
+		<div id="footertop">
+			<?php echo $this->element('footer_top', array('language' => '2')); ?> <!--cache this-->
+		</div>
+		
+		<div id="footer">			
+			
 			<?php #echo $this->Html->link(
 					#$this->Html->image('cake.power.gif', array('alt'=> __('CakePHP: the rapid development php framework', true), 'border' => '0')),
 					#'http://www.cakephp.org/',

@@ -546,3 +546,14 @@ div.code-coverage-results span.result-good {
 #user-nav{
 	text-align:right;
 }
+
+#menulinks{
+	margin: 0 20px 0 0;
+}
+#menutop{
+	text-align:left;
+	margin-left:20px;
+}
+#footertop{
+	text-align:left;
+}

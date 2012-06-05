@@ -5,7 +5,7 @@ class AppController extends Controller {
     
     function beforeFilter(){
     
-        $this->Auth->allow('index', 'view');
+        $this->Auth->allow('index', 'view', 'menugrab', 'footergrab'); //display
         $this->Auth->authError = 'Please login to view that page.';
         $this->Auth->loginError = 'Incorrect username/password combination';
         $this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'login');

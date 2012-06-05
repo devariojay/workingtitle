@@ -88,6 +88,7 @@
 		</dd>
 	</dl>
 </div>
+<?php if($admin): ?>
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
@@ -197,3 +198,4 @@
 		</ul>
 	</div>
 </div>
+<?php endif; ?>

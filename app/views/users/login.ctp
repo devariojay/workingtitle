@@ -1,5 +1,4 @@
 
-<h1>Login</h1>
 <?php
     echo $session->flash('auth');
 
