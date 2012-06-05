@@ -13,7 +13,7 @@ class AppController extends Controller {
     
         $this->set('admin', $this->_isAdmin());
         $this->set('logged_in', $this->_loggedIn());
-        $this->set('users_username', $this->_usersUsername());
+        $this->set('users_username', $this->_usersUsername()); 
         $this->set('userId', $this->_usersId());       
         
     }
